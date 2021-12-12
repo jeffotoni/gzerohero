@@ -189,7 +189,7 @@ func main() {
 			w.Write([]byte("pong😍"))
 		})
 
-	mux.HandleFunc("/api/v1/zerohero", Use(Service, Logger()))
+	mux.HandleFunc("/api", Use(Service, Logger()))
 	mux.HandleFunc("/", Use(Service, Logger()))
 
 	server := &http.Server{
