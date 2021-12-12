@@ -1,7 +1,6 @@
 #################################################
 # Go + Strach + Muiltistage
 #################################################
-
 FROM golang:1.17.0 AS builder
 WORKDIR /go/src/main
 COPY . .
