@@ -190,7 +190,7 @@ func main() {
 		})
 
 	mux.HandleFunc("/api", Use(Service, Logger()))
-	mux.HandleFunc("/", Use(Service, Logger()))
+	//mux.HandleFunc("/", Use(Service, Logger()))
 
 	server := &http.Server{
 		Addr:    "0.0.0.0:8080",
