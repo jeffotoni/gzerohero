@@ -116,7 +116,7 @@ func init() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(time.Second*10))
 	defer cancel()
 
-	err := session.Connect(ctx)
+	err = session.Connect(ctx)
 	if err != nil {
 		log.Println("Error client.Connect:", err)
 		return
@@ -170,6 +170,14 @@ func Use(f http.HandlerFunc, middlewares ...Middleware) http.HandlerFunc {
 }
 
 func main() {
+	// f, err := os.Create("profile.pb.gz")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// pprof.StartCPUProfile(f)
+	// defer pprof.StopCPUProfile()
+	// pprof.WriteHeapProfile(f)
+
 	mux := http.NewServeMux()
 	mux.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
@@ -177,7 +185,7 @@ func main() {
 	})
 
 	//mux.HandleFunc("/", Use(Service, Logger()))
-  mux.HandleFunc("/", Service)
+	mux.HandleFunc("/", Service)
 
 	s := &http.Server{
 		Addr:    "0.0.0.0:8080",
