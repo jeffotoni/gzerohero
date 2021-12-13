@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/rs/cors"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -116,7 +117,7 @@ func init() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(time.Second*10))
 	defer cancel()
 
-	err = session.Connect(ctx)
+	err := session.Connect(ctx)
 	if err != nil {
 		log.Println("Error client.Connect:", err)
 		return
@@ -169,14 +170,6 @@ func Use(f http.HandlerFunc, middlewares ...Middleware) http.HandlerFunc {
 	return f
 }
 
-// f, err := os.Create("profile.pb.gz")
-// if err != nil {
-// 	log.Fatal(err)
-// }
-// pprof.StartCPUProfile(f)
-// defer pprof.StopCPUProfile()
-// pprof.WriteHeapProfile(f)
-
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
@@ -187,9 +180,13 @@ func main() {
 	//mux.HandleFunc("/", Use(Service, Logger()))
 	mux.HandleFunc("/", Service)
 
+	handler := cors.Default().Handler(mux)
 	s := &http.Server{
-		Addr:    "0.0.0.0:8080",
-		Handler: mux,
+		Addr:           "0.0.0.0:8080",
+		Handler:        handler,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 1 << 20, // 1MB
 	}
 	log.Println("\033[1;44mRunning on http://0.0.0.0:8080 (Press CTRL+C to quit)\033[0m")
 	log.Fatal(s.ListenAndServe())
