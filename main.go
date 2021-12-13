@@ -169,15 +169,15 @@ func Use(f http.HandlerFunc, middlewares ...Middleware) http.HandlerFunc {
 	return f
 }
 
-func main() {
-	// f, err := os.Create("profile.pb.gz")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// pprof.StartCPUProfile(f)
-	// defer pprof.StopCPUProfile()
-	// pprof.WriteHeapProfile(f)
+// f, err := os.Create("profile.pb.gz")
+// if err != nil {
+// 	log.Fatal(err)
+// }
+// pprof.StartCPUProfile(f)
+// defer pprof.StopCPUProfile()
+// pprof.WriteHeapProfile(f)
 
+func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
