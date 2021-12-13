@@ -15,7 +15,7 @@ import (
 	"github.com/go-playground/assert/v2"
 )
 
-var pathFile = "../json"
+var pathFile = "./json"
 
 // go test -v -run ^TestZeroHeroHandlers$
 // go test -v -run ^TestZeroHeroHandlers$ --count=10
