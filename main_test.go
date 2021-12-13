@@ -15,37 +15,15 @@ import (
 	"github.com/go-playground/assert/v2"
 )
 
-var pathFile = "./json"
+var pathFile = "../json"
 
 // go test -v -run ^TestZeroHeroHandlers$
 // go test -v -run ^TestZeroHeroHandlers$ --count=10
 
-// go test -cover -v
 // go test -coverprofile coverage.out
 // go tool cover -html=coverage.out
 
 // go test -bench . -benchmem
-// go test -c
-
-// ppprof
-// go install github.com/google/pprof@latest
-// pprof -top [main_binary] profile.pb.gz
-// pprof -web [main_binary] profile.pb.gz
-// pprof -http=[host]:[port] [main_binary] profile.pb.gz
-
-// go tool pprof standard profile.pb.gz
-// top10
-// top5 -cum
-// web (precisa instalar graphviz.org)
-
-// ulimit -n 100000
-// ulimit -Sn
-
-// formats
-// -dot: Generates a report in .dot format. All other formats are generated from this one.
-// -svg: Generates a report in SVG format.
-// -web: Generates a report in SVG format on a temp file, and starts a web browser to view it.
-// -png, -jpg, -gif, -pdf: Generates a report in these formats.
 
 // openFileBuffer
 // openFileBuffer(file string) *bytes.Buffer , error
@@ -55,6 +33,17 @@ func openFileBuffer(file string) (*bytes.Buffer, error) {
 		return bytes.NewBuffer([]byte("")), err
 	}
 	return bytes.NewBuffer(dat), nil
+}
+
+func init() {
+	c = Config{
+		Srv:     "mongodb",
+		DB:      "zerohero",
+		Host:    "localhost:27017",
+		User:    "root",
+		Pass:    "senha123",
+		Options: "authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false",
+	}
 }
 
 // TestZeroHeroHandlers
@@ -378,7 +367,7 @@ func TestInsertOne(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			zh := tt.args.zerohero()
-			if err := zh.InsertOne(tt.args.collname); (err != nil) != tt.wantErr {
+			if err := zh.InsertOne(c); (err != nil) != tt.wantErr {
 				t.Errorf("ZeroHero.InsertOne() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -413,7 +402,7 @@ func TestFindOne(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			gotMzh, err := FindOne(tt.args.name, tt.args.fatia, tt.args.collname)
+			gotMzh, err := FindOne(tt.args.name, tt.args.fatia, c)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FindOne() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -461,7 +450,7 @@ func TestUpdateOne(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			zh := tt.args.zerohero()
-			if err := zh.UpdateOne(tt.args.name, tt.args.collname); (err != nil) != tt.wantErr {
+			if err := zh.UpdateOne(tt.args.name, c); (err != nil) != tt.wantErr {
 				t.Errorf("ZeroHero.UpdateOne() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -491,7 +480,7 @@ func TestDeleteOne(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if err := DeleteOne(tt.args.name, tt.args.collname); (err != nil) != tt.wantErr {
+			if err := DeleteOne(tt.args.name, c); (err != nil) != tt.wantErr {
 				t.Errorf("DeleteOne() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
