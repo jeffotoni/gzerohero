@@ -180,6 +180,10 @@ func (zh ZeroHero) InsertOne(c Config) (err error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(time.Minute*10))
 	defer cancel()
 	timePoolLimit()
+	if collectionx == nil {
+		err = errors.New("No connect")
+		return
+	}
 
 	zh.UUID = uuid.New().String()
 	zh.Name = strings.ToLower(zh.Name)
@@ -201,7 +205,10 @@ func FindOne(name, fatia string, c Config) (mzh interface{}, err error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(time.Minute*10))
 	defer cancel()
 	timePoolLimit()
-
+	if collectionx == nil {
+		err = errors.New("No connect")
+		return
+	}
 	mzh = nil
 	name = strings.ToLower(name)
 	var zh ZeroHero
@@ -238,6 +245,10 @@ func DeleteOne(name string, c Config) (err error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(time.Minute*10))
 	defer cancel()
 	timePoolLimit()
+	if collectionx == nil {
+		err = errors.New("No connect")
+		return
+	}
 
 	name = strings.ToLower(name)
 	res, err := collectionx.DeleteOne(ctx, bson.M{"name": name})
@@ -257,6 +268,10 @@ func (zh ZeroHero) UpdateOne(name string, c Config) (err error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(time.Minute*10))
 	defer cancel()
 	timePoolLimit()
+	if collectionx == nil {
+		err = errors.New("No connect")
+		return
+	}
 
 	name = strings.ToLower(name)
 
@@ -498,6 +513,13 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 	if http.MethodDelete != strings.ToUpper(r.Method) {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		jsonstr := `{"msg":"O método permitido é Delete!"}`
+		w.Write([]byte(jsonstr))
+		return
+	}
+
+	if r.Header.Get("X-Keysuper") != "x90123123456." {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		jsonstr := `{"msg":"Sem permissão para deletar!"}`
 		w.Write([]byte(jsonstr))
 		return
 	}
