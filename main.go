@@ -440,6 +440,13 @@ func Post(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if r.Header.Get("X-Keysuper") != os.Getenv("XKEY_SUPER") {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		jsonstr := `{"msg":"Sem permissão para deletar!"}`
+		w.Write([]byte(jsonstr))
+		return
+	}
+
 	var zh ZeroHero
 	err = json.NewDecoder(r.Body).Decode(&zh)
 	if err != nil {
@@ -517,7 +524,7 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if r.Header.Get("X-Keysuper") != "x90123123456." {
+	if r.Header.Get("X-Keysuper") != os.Getenv("XKEY_SUPER") {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		jsonstr := `{"msg":"Sem permissão para deletar!"}`
 		w.Write([]byte(jsonstr))
@@ -546,6 +553,13 @@ func Put(w http.ResponseWriter, r *http.Request) {
 	if http.MethodPut != strings.ToUpper(r.Method) {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		jsonstr := `{"msg":"O método permitido é Put!"}`
+		w.Write([]byte(jsonstr))
+		return
+	}
+
+	if r.Header.Get("X-Keysuper") != os.Getenv("XKEY_SUPER") {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		jsonstr := `{"msg":"Sem permissão para update!"}`
 		w.Write([]byte(jsonstr))
 		return
 	}
