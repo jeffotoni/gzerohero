@@ -1,7 +1,7 @@
 # API zerohero 🐿️ 
 
-Um simples exemplo de uma API zerohero inspirada na api [superheroapi](https://superheroapi.com/).
-Este serviço está bem no inicio e será usado no Bootcamp e Hand-on no DevOpsFest.
+Um simples exemplo de uma API zerohero inspirada na api superheroapi.
+Este serviço está bem no inicio e será usado no Bootcamp e Hand-on no DevOpsFest e poderá ser acessado clicando aqui [zerohero](https://zerohero.web.s3apis.com/).
 
 Fique a vontade em comentar e colaborar abra um [issue](https://github.com/jeffotoni/gzerohero/issues) e deixe seus comentários.
 
