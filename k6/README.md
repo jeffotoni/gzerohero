@@ -1,59 +1,55 @@
 # k6.io
+k6 is an open source load testing tool developed by Go language 😍. k6 comes with features, which you can learn all about in the documentation. The main features include:
 
-k6 é uma ferramenta de teste de carga de código aberto desenvolvida pela linguagem Go 😍. O k6 vem com recursos, sobre os quais você pode aprender tudo na documentação. Os principais recursos incluem:
+- CLI tool with developer-friendly APIs.
+- Scripting in JavaScript ES2015 / ES6 - with support for local and remote modules
+- Checks and limits - for goal-oriented load testing
 
-- Ferramenta CLI com APIs amigáveis ​​ao desenvolvedor.
-- Scripting em JavaScript ES2015 / ES6 - com suporte para módulos locais e remotos
-- Verificações e limites - para teste de carga orientado a metas
+k6 created its own javascript lib to behave like nodejs, so when building scripts it will use the javascript language but with libs provided by k6.io.
+Can I use npm and its libs to create my scripts?
 
-O k6 criou sua própria lib javascript para comportar como nodejs, então ao construir os scripts irá usar a linguagem javascript porém com libs disponibilizada pela k6.io.
-
-Posso usar npm e suas libs para criação dos meus scripts ?
-Sim pode, importar módulos npm ou bibliotecas, você pode [agrupar módulos npm com webpack](https://k6.io/docs/using-k6/modules/#bundling-node-modules) e importá-los em seus testes.
+Yes you can, import npm modules or libraries, you can [bundle npm modules with webpack](https://k6.io/docs/using-k6/modules/#bundling-node-modules) and import them in your tests.
 
 ### Github k6.io
 [github k6.io](https://github.com/k6io/k6)
 
 ### Instalar k6.io
-
-Existe várias formas de instalação, e por ser feito em Go tudo fica mais fácil basta instalar seu binário em sua máquina.
-
-Aqui está o link com todas possibilidades de instalação:
+There are several ways to install it, and because it is done in Go, everything is easier. Just install the binary on your machine. Here is the link with all the installation possibilities:
 [Install k6.io](https://k6.io/docs/getting-started/installation/)
 
-### Instalar com docker
-
-Vamos mostrar a instalação usando Docker desta forma não irá precisar instalar nadinha na sua máquina.
+### Install with Docker
+We will show you the installation using Docker so you won't need to install anything on your machine.
 
 ```bash
 $ docker pull loadimpact/k6
 ```
 
-Agora vamos executar nossa massa de testes. O detalhe abaixo é que como está em container a rede que irá executar é outra, então passei parametro para nosso Script para buscar nosso domain ou hosname da api e o volume para carregar nosso json.
+Now let's run our test mass. The detail below is that since it is in a container, the network that will run is another, so I passed parameters to our Script to search for our domain or API hostname and the volume to load our json.
+
 ```bash
 $ docker run -v $(pwd):/data \
 -e DOMAIN=http://192.168.0.70:8080 \
 -i loadimpact/k6 run - <script.js
 ```
-Nosso script já deixamos pré-prontos, fazendo chamada do POST que envia um json e do Get buscando a informação e do nosso famigerado ping 😍.
+We have already left our script ready, calling POST which sends a json and Get which fetches the information and our infamous ping 😍.
 
 #### Executando k6
 
 ```bash
 $ k6 run myscript.js
 ```
-Ou se estiver usando **Docker:**
+Or if you are using **Docker:**
 ```bash
 $ docker run -i loadimpact/k6 run - <myscript.js
 ```
-ou
+or
 
 ```bash
 $  k6 run -e DOMAIN=http://localhost:8080 --vus 100 --duration 20s script.js
 
 ```
 
-Saída:
+output:
 ```bash
 
           /\      |‾‾| /‾‾/   /‾‾/   

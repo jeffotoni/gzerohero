@@ -1,12 +1,10 @@
 #ddosify 
+This tool stress tests our API. You can [go here](https://github.com/ddosify/ddosify) for all the details including installation.
 
-Esta ferramenta faz um test de stress em nossa api. Pode [entrar aqui](https://github.com/ddosify/ddosify) para todos os detalhes inclusive a instalação.
+I created a config file to test our ZeroHero API.
+You can run it from the config I created or run it manually.
 
-Eu criei um arquivo de configuração para testar nossa API ZeroHero.
-
-Você pode executar pelo config que criei ou executar manualmente.
-
-### Usuando Config json
+### Using Config json
 ```bash
 $ ddosify -config ddosify/config.config.json
 ```
@@ -15,7 +13,7 @@ $ ddosify -config ddosify/config.config.json
 ```bash
 $ ddosify -n 10000 -m GET -l linear -h 'Content-Type: application/json' -d 20 -t http://localhost:8080/api/hulk
 ```
-saída:
+output:
 ```bash
   Initializing...
 🔥 Engine fired.
