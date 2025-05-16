@@ -139,7 +139,7 @@ output:
 $ HTTP/2 200
 ```
 
-#### DELETE api/<heroi>
+#### DELETE api
 
 ```bash
 $ curl -i -XDELETE \
@@ -167,7 +167,63 @@ Content-Type: application/json
 Date: Mon, 13 Dec 2021 03:48:39 GMT
 Content-Length: 1396
 
-{"response":"success","id":"332","uuid":"06508da1-d3a3-40f4-9db2-64b9e66df3de","name":"hulk","powerstats":{"intelligence":"88","strength":"100","speed":"63","durability":"100","power":"98","combat":"85"},"biography":{"full-name":"Bruce Banner","alter-egos":"No alter egos found.","aliases":["Annihilator","Captain Universe","Joe Fixit","Mr. Fixit","Mechano","Professor","Jade Jaws","Golly Green Giant"],"place-of-birth":"Dayton, Ohio","first-appearance":"Incredible Hulk #1 (May, 1962)","publisher":"Marvel Comics","alignment":"good"},"appearance":{"gender":"Male","race":"Human / Radiation","height":["8'0","244 cm"],"weight":["1400 lb","630 kg"],"eye-color":"Green","hair-color":"Green"},"work":{"occupation":"Nuclear physicist, Agent of S.H.I.E.L.D.","base":"(Banner) Hulkbuster Base, New Mexico, (Hulk) mobile, but prefers New Mexico"},"connections":{"group-affiliation":"Defenders, former leader of the new Hulkbusters, member of the Avengers, Pantheon, Titans Three, the Order, Hulkbusters of Counter-Earth-Franklin, alternate Fantastic Four","relatives":"Betty Ross Talbot Banner (wife), Brian Banner (father, apparently deceased), Rebecca Banner (mother, deceased), Morris Walters (uncle), Elaine Banner Walters (aunt, deceased), Jennifer Walters (She-Hulk, cousin), Thaddeus E. 'Thunderbolt' Ross (father"},"image":{"url":"https://www.superherodb.com/pictures2/portraits/10/100/83.jpg"}}
+{
+    "response": "success",
+    "id": "332",
+    "uuid": "06508da1-d3a3-40f4-9db2-64b9e66df3de",
+    "name": "hulk",
+    "powerstats": {
+        "intelligence": "88",
+        "strength": "100",
+        "speed": "63",
+        "durability": "100",
+        "power": "98",
+        "combat": "85"
+    },
+    "biography": {
+        "full-name": "Bruce Banner",
+        "alter-egos": "No alter egos found.",
+        "aliases": [
+            "Annihilator",
+            "Captain Universe",
+            "Joe Fixit",
+            "Mr. Fixit",
+            "Mechano",
+            "Professor",
+            "Jade Jaws",
+            "Golly Green Giant"
+        ],
+        "place-of-birth": "Dayton, Ohio",
+        "first-appearance": "Incredible Hulk #1 (May, 1962)",
+        "publisher": "Marvel Comics",
+        "alignment": "good"
+    },
+    "appearance": {
+        "gender": "Male",
+        "race": "Human / Radiation",
+        "height": [
+            "8'0",
+            "244 cm"
+        ],
+        "weight": [
+            "1400 lb",
+            "630 kg"
+        ],
+        "eye-color": "Green",
+        "hair-color": "Green"
+    },
+    "work": {
+        "occupation": "Nuclear physicist, Agent of S.H.I.E.L.D.",
+        "base": "(Banner) Hulkbuster Base, New Mexico, (Hulk) mobile, but prefers New Mexico"
+    },
+    "connections": {
+        "group-affiliation": "Defenders, former leader of the new Hulkbusters, member of the Avengers, Pantheon, Titans Three, the Order, Hulkbusters of Counter-Earth-Franklin, alternate Fantastic Four",
+        "relatives": "Betty Ross Talbot Banner (wife), Brian Banner (father, apparently deceased), Rebecca Banner (mother, deceased), Morris Walters (uncle), Elaine Banner Walters (aunt, deceased), Jennifer Walters (She-Hulk, cousin), Thaddeus E. 'Thunderbolt' Ross (father"
+    },
+    "image": {
+        "url": "https://www.superherodb.com/pictures2/portraits/10/100/83.jpg"
+    }
+}
 ```
 
 #### GET api/<heroi>/<caracteristica>
@@ -185,7 +241,10 @@ Content-Type: application/json
 Date: Mon, 13 Dec 2021 03:50:34 GMT
 Content-Length: 142
 
-{"occupation":"Nuclear physicist, Agent of S.H.I.E.L.D.","base":"(Banner) Hulkbuster Base, New Mexico, (Hulk) mobile, but prefers New Mexico"}
+{
+    "occupation": "Nuclear physicist, Agent of S.H.I.E.L.D.",
+    "base": "(Banner) Hulkbuster Base, New Mexico, (Hulk) mobile, but prefers New Mexico"
+}
 ```
 
 
@@ -202,7 +261,9 @@ Content-Type: application/json
 Date: Mon, 13 Dec 2021 03:50:34 GMT
 Content-Length: 142
 
-{"url":"https://www.superherodb.com/pictures2/portraits/10/100/83.jpg"}
+{
+    "url": "https://www.superherodb.com/pictures2/portraits/10/100/83.jpg"
+}
 ```
 
 ```bash
@@ -218,7 +279,14 @@ Content-Type: application/json
 Date: Mon, 13 Dec 2021 03:50:34 GMT
 Content-Length: 142
 
-{"intelligence":"88","strength":"100","speed":"63","durability":"100","power":"98","combat":"85"}
+{
+    "intelligence": "88",
+    "strength": "100",
+    "speed": "63",
+    "durability": "100",
+    "power": "98",
+    "combat": "85"
+}
 ```
 
 ```bash
@@ -234,7 +302,24 @@ Content-Type: application/json
 Date: Mon, 13 Dec 2021 03:50:34 GMT
 Content-Length: 142
 
-{"full-name":"Bruce Banner","alter-egos":"No alter egos found.","aliases":["Annihilator","Captain Universe","Joe Fixit","Mr. Fixit","Mechano","Professor","Jade Jaws","Golly Green Giant"],"place-of-birth":"Dayton, Ohio","first-appearance":"Incredible Hulk #1 (May, 1962)","publisher":"Marvel Comics","alignment":"good"}
+{
+    "full-name": "Bruce Banner",
+    "alter-egos": "No alter egos found.",
+    "aliases": [
+        "Annihilator",
+        "Captain Universe",
+        "Joe Fixit",
+        "Mr. Fixit",
+        "Mechano",
+        "Professor",
+        "Jade Jaws",
+        "Golly Green Giant"
+    ],
+    "place-of-birth": "Dayton, Ohio",
+    "first-appearance": "Incredible Hulk #1 (May, 1962)",
+    "publisher": "Marvel Comics",
+    "alignment": "good"
+}
 ```
 
 ```bash
@@ -250,7 +335,20 @@ Content-Type: application/json
 Date: Mon, 13 Dec 2021 03:50:34 GMT
 Content-Length: 142
 
-{"gender":"Male","race":"Human / Radiation","height":["8'0","244 cm"],"weight":["1400 lb","630 kg"],"eye-color":"Green","hair-color":"Green"}
+{
+    "gender": "Male",
+    "race": "Human / Radiation",
+    "height": [
+        "8'0",
+        "244 cm"
+    ],
+    "weight": [
+        "1400 lb",
+        "630 kg"
+    ],
+    "eye-color": "Green",
+    "hair-color": "Green"
+}
 ```
 
 ```bash
@@ -266,5 +364,8 @@ Content-Type: application/json
 Date: Mon, 13 Dec 2021 03:50:34 GMT
 Content-Length: 142
 
-{"group-affiliation":"Defenders, former leader of the new Hulkbusters, member of the Avengers, Pantheon, Titans Three, the Order, Hulkbusters of Counter-Earth-Franklin, alternate Fantastic Four","relatives":"Betty Ross Talbot Banner (wife), Brian Banner (father, apparently deceased), Rebecca Banner (mother, deceased), Morris Walters (uncle), Elaine Banner Walters (aunt, deceased), Jennifer Walters (She-Hulk, cousin), Thaddeus E. 'Thunderbolt' Ross (father"}
+{
+    "group-affiliation": "Defenders, former leader of the new Hulkbusters, member of the Avengers, Pantheon, Titans Three, the Order, Hulkbusters of Counter-Earth-Franklin, alternate Fantastic Four",
+    "relatives": "Betty Ross Talbot Banner (wife), Brian Banner (father, apparently deceased), Rebecca Banner (mother, deceased), Morris Walters (uncle), Elaine Banner Walters (aunt, deceased), Jennifer Walters (She-Hulk, cousin), Thaddeus E. 'Thunderbolt' Ross (father"
+}
 ```
